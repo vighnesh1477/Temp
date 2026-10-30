@@ -1,0 +1,484 @@
+
+/* ==================================================================
+   Royal Grace — Global Wedding Invitation Styles
+   ================================================================== */
+
+:root {
+  /* Palette */
+  --ink: #27331f;
+  --green-deep: #3e5634;
+  --green: #4a5c3d;
+  --green-soft: #5f6d55;
+  --cream: #f9f7f1;
+  --cream-warm: #f6f3e9;
+  --linen: #eae3d2;
+  --gold: #c2a15b;
+  --gold-soft: #d9bc7e;
+  --danger: #9c4a3c;
+
+  /* Layout */
+  --frame-max: 680px;
+  --section-pad: clamp(3.2rem, 9vw, 5.5rem)
+    clamp(1.4rem, 6vw, 2.5rem);
+
+  /* Typography */
+  --font-script-lg: 'Great Vibes', 'Dancing Script', cursive;
+  --font-script-sm: 'Dancing Script', cursive;
+  --font-display: 'Playfair Display', 'Lora', serif;
+  --font-serif: 'Lora', Georgia, serif;
+  --font-italic: 'Cormorant Garamond', 'Lora', serif;
+
+  --shadow-card: 0 10px 30px rgba(39, 51, 31, 0.12);
+}
+
+/* ------------------------------------------------------------------
+   Reset
+   ------------------------------------------------------------------ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: clip;
+}
+
+body {
+  font-family: var(--font-serif);
+  color: var(--ink);
+  background-color: var(--linen);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+body.no-scroll {
+  overflow: hidden;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}
+
+:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+::selection {
+  background: rgba(74, 92, 61, 0.25);
+}
+
+/* ------------------------------------------------------------------
+   Typography helpers
+   ------------------------------------------------------------------ */
+
+.script-lg {
+  font-family: var(--font-script-lg);
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+.script-sm {
+  font-family: var(--font-script-sm);
+  font-weight: 600;
+}
+
+/* ------------------------------------------------------------------
+   Page frame and fixed linen background
+   ------------------------------------------------------------------ */
+
+.page {
+  position: relative;
+  min-height: 100vh;
+}
+
+.page__frame {
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  background: transparent;
+}
+
+/* One continuous, fixed linen texture */
+
+.page__frame::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+
+  background-color: #f0ebdd;
+  background-image: url('/images/linen-texture.webp');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+}
+
+/* ------------------------------------------------------------------
+   Garland borders
+   ------------------------------------------------------------------ */
+
+.page__garland {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 100px;
+
+  background-image: url('/images/garland.svg');
+  background-repeat: repeat-y;
+  background-position: top center;
+  background-size: 100px auto;
+
+  z-index: 6;
+  pointer-events: none;
+  opacity: 0.95;
+}
+
+.page__garland--left {
+  left: -35px;
+}
+
+.page__garland--right {
+  right: -35px;
+}
+
+/* Smaller garlands on wider screens */
+
+@media (min-width: 720px) {
+  .page__garland {
+    width: 72px;
+    background-size: 72px auto;
+  }
+
+  .page__garland--left {
+    left: -40px;
+  }
+
+  .page__garland--right {
+    right: -40px;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Sections and common dividers
+   ------------------------------------------------------------------ */
+
+.section {
+  padding: var(--section-pad);
+  position: relative;
+}
+
+.section > * {
+  max-width: var(--frame-max);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-head,
+.section-heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.55rem;
+  margin-bottom: clamp(1.6rem, 5vw, 2.4rem);
+}
+
+.section-head__icon,
+.section-heading__icon {
+  color: var(--green);
+  display: inline-flex;
+}
+
+.section-head__title,
+.section-heading__title {
+  font-family: var(--font-script-lg);
+  font-weight: 400;
+  font-size: clamp(2.1rem, 8vw, 2.75rem);
+  color: var(--green);
+  line-height: 1.2;
+}
+
+/* ------------------------------------------------------------------
+   Image-based floral dividers
+   Images: public/images/dividers/1.png through 4.png
+   ------------------------------------------------------------------ */
+
+.floral-divider {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.35rem 0 0.65rem;
+  overflow: hidden;
+}
+
+.floral-divider__image {
+  display: block;
+  width: min(82vw, 340px);
+  height: auto;
+  max-height: 75px;
+  object-fit: contain;
+  object-position: center;
+  opacity: 0.95;
+}
+
+/* Compatibility with existing divider class names */
+
+.heart-divider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  color: var(--green);
+  opacity: 0.95;
+}
+
+.heart-divider .floral-divider__image {
+  margin-inline: auto;
+}
+
+.heart-divider--dark {
+  color: var(--green-deep);
+  margin-top: 0.9rem;
+}
+
+.wavy-divider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.3rem 1rem;
+  width: 100%;
+}
+
+.wavy-divider .floral-divider__image {
+  width: min(78vw, 320px);
+}
+
+/* ------------------------------------------------------------------
+   Global primary button
+   ------------------------------------------------------------------ */
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+
+  background: var(--green);
+  color: #faf9f4;
+  border: none;
+  border-radius: 999px;
+  padding: 0.95rem 1.9rem;
+
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  box-shadow: 0 8px 18px rgba(39, 51, 31, 0.22);
+
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.btn-primary:hover {
+  background: var(--green-deep);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(39, 51, 31, 0.26);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-primary:disabled {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ------------------------------------------------------------------
+   Scroll reveal
+   ------------------------------------------------------------------ */
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(26px) scale(0.985);
+
+  transition:
+    opacity 0.85s cubic-bezier(0.22, 0.61, 0.36, 1),
+    transform 0.85s cubic-bezier(0.22, 0.61, 0.36, 1);
+
+  transition-delay: var(--reveal-delay, 0s);
+  will-change: opacity, transform;
+}
+
+[data-reveal].revealed {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* ------------------------------------------------------------------
+   Arabic mode typography and RTL overrides
+   ------------------------------------------------------------------ */
+
+.arabic-mode {
+  direction: rtl;
+  font-family: 'Amiri', 'Aref Ruqaa', var(--font-serif);
+}
+
+.arabic-mode .script-lg,
+.arabic-mode .script-sm {
+  font-family: 'Aref Ruqaa', 'Amiri', cursive, serif;
+}
+
+.arabic-mode .hero__name {
+  font-family: 'Aref Ruqaa', 'Amiri', serif;
+  font-size: clamp(3rem, 15vw, 4.8rem);
+}
+
+.arabic-mode .modal-close {
+  right: auto;
+  left: 14px;
+}
+
+.arabic-mode .timeline__date-pill {
+  flex-direction: row-reverse;
+}
+
+.arabic-mode .timeline__event {
+  padding-left: 0;
+  padding-right: 28px;
+}
+
+.arabic-mode .timeline__dot {
+  left: auto;
+  right: 0;
+}
+
+.arabic-mode .timeline {
+  border-left: none;
+  border-right: 1.5px solid rgba(74, 92, 61, 0.25);
+}
+
+/* ------------------------------------------------------------------
+   Responsive overrides
+   ------------------------------------------------------------------ */
+
+@media (min-width: 768px) {
+  :root {
+    --section-pad: clamp(4rem, 9vw, 6.5rem) 2.5rem;
+  }
+
+  .floral-divider__image {
+    width: min(360px, 60vw);
+    max-height: 85px;
+  }
+}
+
+@media (min-width: 1100px) {
+  .page__frame {
+    margin: 0 min(72px, 6vw);
+    box-shadow: 0 0 60px rgba(39, 51, 31, 0.14);
+  }
+}
+
+/* Small mobile screens */
+
+@media (max-width: 380px) {
+  .floral-divider__image {
+    width: 78vw;
+    max-height: 60px;
+  }
+
+  .wavy-divider .floral-divider__image {
+    width: 76vw;
+  }
+}
+
+/* Landscape phones */
+
+@media (max-height: 480px) and (orientation: landscape) {
+  .hero {
+    padding-top: 2.4rem;
+    background-position: center 30%;
+  }
+
+  .hero__name {
+    font-size: clamp(2.4rem, 9vh, 3.4rem);
+  }
+
+  .hero__person-line {
+    font-size: 0.85rem;
+  }
+
+  .gate-medallion {
+    width: min(150px, 34vh);
+  }
+}
+
+/* ------------------------------------------------------------------
+   Reduced motion accessibility fallback
+   ------------------------------------------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  [data-hero],
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+
+  .gate-medallion {
+    animation: none;
+  }
+
+  .hero__scroll svg {
+    animation: none;
+  }
+
+  .carousel__img {
+    transition: none;
+  }
+
+  .scratch__canvas {
+    transition: none;
+  }
+}

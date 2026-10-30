@@ -1,0 +1,104 @@
+/* ==================================================================
+   CONTACT ("Please Contact" card — Contact.css)
+   ================================================================== */
+
+.contactus__kicker {
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-size: clamp(0.95rem, 4vw, 1.1rem);
+  color: var(--green-soft);
+  text-align: center;
+  margin-top: -0.6rem;
+  margin-bottom: 0;
+}
+
+.contactus {
+  max-width: 430px;
+  margin: 1.5rem auto 0;
+  padding: 0.35rem 1.3rem;
+  background: #fdfbf3;
+  border: 1px solid rgba(194, 161, 91, 0.38);
+  border-radius: 18px;
+  box-shadow: 0 14px 30px rgba(62, 86, 52, 0.08);
+}
+
+.contactus__row {
+  display: flex;
+  align-items: center;
+  gap: 0.95rem;
+  padding: 1.05rem 0;
+}
+
+.contactus__row + .contactus__row {
+  border-top: 1px solid rgba(194, 161, 91, 0.3);
+}
+
+/* Gold-coin initial avatar */
+.contactus__avatar {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f4e4b8, #d9bc7e);
+  border: 1px solid rgba(146, 110, 52, 0.35);
+  font-family: var(--font-script-lg);
+  font-size: 1.3rem;
+  line-height: 1;
+  color: var(--green-deep);
+  padding-bottom: 3px; /* optical centring for the script face */
+}
+
+.contactus__who {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.05rem;
+}
+
+.contactus__name {
+  font-family: var(--font-display);
+  font-size: 1.02rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--green-deep);
+}
+
+.contactus__role {
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-size: 0.84rem;
+  color: var(--green-soft);
+}
+
+.contactus__phone {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-display);
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--green);
+  text-decoration: none;
+  white-space: nowrap;
+  padding-bottom: 2px;
+  border-bottom: 1px solid rgba(74, 92, 61, 0.28);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.contactus__phone:hover,
+.contactus__phone:focus-visible {
+  color: var(--green-deep);
+  border-bottom-color: var(--gold);
+}
+
+/* Arabic mode — relax latin letter-spacing on RTL text */
+.arabic-mode .contactus__name,
+.arabic-mode .contactus__phone {
+  letter-spacing: 0;
+}

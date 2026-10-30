@@ -1,0 +1,320 @@
+/* ==================================================================
+   SCRATCH-TO-REVEAL — "Gilded Garden" (ScratchCard.css)
+   A deep-emerald & gold foil heart rings a surviving gilt frame;
+   when 50% is scratched the foil blasts into rose petals, sage
+   leaves, gold flecks and star sparkles that rain past the heart,
+   leaving the gold frame holding the wedding date.
+   ================================================================== */
+
+.scratch-section {
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.scratch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.scratch__stage {
+  position: relative;
+  width: clamp(230px, 68vw, 300px);
+  aspect-ratio: 1 / 1;
+  margin: 0.6rem auto 0;
+  display: grid;
+  place-items: center;
+  cursor: grab;
+  touch-action: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.scratch__stage:active {
+  cursor: grabbing;
+}
+
+.scratch__stage--blasting,
+.scratch__stage--revealed {
+  cursor: default;
+  /* behave like a normal background again — the page must scroll */
+  touch-action: auto;
+  pointer-events: none;
+}
+
+.scratch__stage:focus-within {
+  outline: 2px solid rgba(194, 161, 91, 0.7);
+  outline-offset: 8px;
+  border-radius: 14px;
+}
+
+/* ---------------- the reveal (wedding date) ---------------- */
+
+.scratch__reveal {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2.1rem 1.7rem 2.5rem;
+  pointer-events: none;
+}
+
+/* soft ivory glow that lifts the date off the page */
+.scratch__reveal::before {
+  content: '';
+  position: absolute;
+  inset: 13%;
+  border-radius: 50%;
+  background: radial-gradient(
+    closest-side,
+    rgba(255, 253, 244, 0.9),
+    rgba(255, 253, 244, 0.4) 60%,
+    rgba(255, 253, 244, 0) 100%
+  );
+  z-index: -1;
+}
+
+.scratch__flourish {
+  width: clamp(84px, 30vw, 112px);
+  height: auto;
+  color: #c2a15b;
+  margin: 0.1rem 0 0.4rem;
+}
+
+.scratch__flourish--end {
+  margin: 0.5rem 0 0;
+}
+
+.scratch__invited {
+  font-family: var(--font-script-lg);
+  font-size: clamp(1.7rem, 7vw, 2.15rem);
+  color: var(--green-deep);
+  line-height: 1.12;
+  margin-bottom: 0.15rem;
+}
+
+.scratch__date {
+  font-family: var(--font-display);
+  font-size: clamp(1.08rem, 4.4vw, 1.32rem);
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: 0.02em;
+}
+
+.scratch__day {
+  font-family: var(--font-serif);
+  font-size: clamp(0.78rem, 3.2vw, 0.9rem);
+  color: var(--green-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  margin-top: 0.22rem;
+}
+
+.scratch__time {
+  font-family: var(--font-serif);
+  font-size: clamp(0.85rem, 3.4vw, 0.98rem);
+  font-style: italic;
+  color: var(--green-deep);
+  margin-top: 0.12rem;
+}
+
+/* ---------------- the scratch foil canvas ---------------- */
+
+.scratch__canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 160%; /* extra fall room so petals rain down past the heart */
+  touch-action: none;
+  pointer-events: none; /* the stage handles input; canvas is pure visuals */
+  z-index: 2;
+  filter: drop-shadow(0 12px 22px rgba(23, 36, 18, 0.28));
+}
+
+/* while the blast plays: no heavy per-frame drop-shadow */
+.scratch__canvas--blasting {
+  filter: none;
+}
+
+/* ---------------- the gilt heart frame (survives the blast) ---------------- */
+
+.scratch__frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* the frame draws itself in stroke-by-stroke on mount */
+.scratch__frame .frame-halo,
+.scratch__frame .frame-outline,
+.scratch__frame .frame-hairline {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: frame-draw 1.5s cubic-bezier(0.55, 0.1, 0.3, 1) forwards;
+}
+
+.scratch__frame .frame-halo {
+  animation-duration: 1.7s;
+  animation-delay: 0.15s;
+}
+
+.scratch__frame .frame-outline {
+  animation-delay: 0.3s;
+}
+
+.scratch__frame .frame-hairline {
+  animation-duration: 1.3s;
+  animation-delay: 0.55s;
+}
+
+@keyframes frame-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* bloom, sprigs and sparkles fade in once the heart is drawn */
+.scratch__frame .frame-ornament {
+  opacity: 0;
+  animation: frame-fade 0.9s ease 1.35s forwards;
+}
+
+@keyframes frame-fade {
+  to {
+    opacity: 1;
+  }
+}
+
+/* once revealed, the surviving frame breathes gold */
+.scratch__stage--revealed .scratch__frame {
+  animation: frame-breathe 3.2s ease-in-out 0.6s infinite;
+}
+
+@keyframes frame-breathe {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 4px rgba(233, 196, 106, 0.35));
+  }
+  50% {
+    filter: drop-shadow(0 0 11px rgba(233, 196, 106, 0.6));
+  }
+}
+
+/* ---------------- blast choreography ---------------- */
+
+/* The date pops through the moment the foil blasts away */
+.scratch__stage--blasting .scratch__reveal {
+  animation: reveal-pop 0.75s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
+}
+
+@keyframes reveal-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ---------------- hint ---------------- */
+
+.scratch__hint {
+  margin-top: 0.8rem;
+  font-family: var(--font-serif);
+  font-size: 0.82rem;
+  letter-spacing: 0.05em;
+  color: var(--green-soft);
+  text-align: center;
+  transition: opacity 0.25s ease;
+}
+
+/* hint fades out (not unmounted) while the blast plays — no layout shift */
+.scratch__hint--hide {
+  opacity: 0;
+}
+
+.scratch__hint--done {
+  animation: fade-in 0.8s ease 0.4s both;
+  color: var(--green-deep);
+  font-weight: 600;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ---------------- Save the Date pill button ---------------- */
+
+.save-date-pill {
+  margin-top: 1.25rem;
+  background: #3e5236;
+  color: #ffffff;
+  border: none;
+  border-radius: 9999px;
+  padding: 11px 24px;
+  font-family: var(--font-serif);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  box-shadow: 0 4px 16px rgba(45, 62, 38, 0.35);
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.save-date-pill:hover {
+  background: #4a6142;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(45, 62, 38, 0.42);
+}
+
+.save-date-pill:focus-visible {
+  outline: 2px solid #c2a15b;
+  outline-offset: 3px;
+}
+
+/* ---------------- reduced motion ---------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .scratch__frame .frame-halo,
+  .scratch__frame .frame-outline,
+  .scratch__frame .frame-hairline {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+
+  .scratch__frame .frame-ornament {
+    animation: none;
+    opacity: 1;
+  }
+
+  .scratch__stage--revealed .scratch__frame,
+  .scratch__stage--blasting .scratch__reveal,
+  .scratch__hint--done {
+    animation: none;
+  }
+}

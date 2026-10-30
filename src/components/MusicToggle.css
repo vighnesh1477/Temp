@@ -1,0 +1,51 @@
+/* ==================================================================
+   MUSIC TOGGLE (MusicToggle.css)
+   ================================================================== */
+
+.music-toggle {
+  position: fixed;
+  top: calc(14px + env(safe-area-inset-top));
+  right: calc(14px + env(safe-area-inset-right));
+  z-index: 130;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  border: none;
+  background: #3e4b37;
+  color: #f7f5ed;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.2s ease;
+}
+
+.music-toggle:hover {
+  background: #4a5c3d;
+  transform: translateY(-1px);
+}
+
+.music-toggle--playing {
+  background: #3e4b37;
+}
+
+.music-toggle--playing::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 13px;
+  border: 1.5px solid rgba(74, 92, 61, 0.5);
+  animation: music-pulse 1.6s ease-out infinite;
+  pointer-events: none;
+}
+
+@keyframes music-pulse {
+  0% {
+    opacity: 0.9;
+    transform: scale(0.92);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.25);
+  }
+}

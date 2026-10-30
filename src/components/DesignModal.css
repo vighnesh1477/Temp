@@ -1,0 +1,151 @@
+/* ==================================================================
+   DESIGN MODAL (DesignModal.css)
+   ================================================================== */
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 160;
+  background: rgba(20, 28, 16, 0.65);
+  backdrop-filter: blur(6px);
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  animation: modal-fade 0.25s ease-out;
+}
+
+.modal-sheet {
+  position: relative;
+  background: #fbf8f0;
+  background-image: url('/images/linen-texture.webp');
+  background-size: 300px;
+  border: 1px solid rgba(194, 161, 91, 0.35);
+  border-radius: 20px;
+  padding: 2rem 1.6rem;
+  max-width: 460px;
+  width: 100%;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  animation: modal-pop 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: none;
+  border: none;
+  color: var(--green-deep);
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  transition: background 0.2s;
+}
+
+.modal-close:hover {
+  background: rgba(74, 92, 61, 0.12);
+}
+
+.modal-head {
+  text-align: center;
+  margin-bottom: 1.4rem;
+}
+
+.modal-icon {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 0.8rem;
+  border-radius: 50%;
+  background: rgba(184, 138, 56, 0.15);
+  color: #b88a38;
+  display: grid;
+  place-items: center;
+}
+
+.modal-title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  color: var(--ink);
+  margin-bottom: 0.4rem;
+}
+
+.modal-subtitle {
+  font-family: var(--font-serif);
+  font-size: 0.88rem;
+  color: var(--green-soft);
+  line-height: 1.45;
+}
+
+.modal-features {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 1.5rem;
+  padding: 12px 14px;
+  background: rgba(74, 92, 61, 0.06);
+  border-radius: 10px;
+}
+
+.modal-feature-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.85rem;
+  color: var(--ink);
+}
+
+.modal-feature-item svg {
+  color: var(--green);
+  flex-shrink: 0;
+}
+
+.modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.modal-action-btn {
+  width: 100%;
+  justify-content: center;
+  padding: 10px 16px;
+}
+
+.btn-secondary {
+  background: #ffffff;
+  border: 1px solid rgba(74, 92, 61, 0.25);
+  color: var(--green-deep);
+  border-radius: 9999px;
+  font-family: var(--font-serif);
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+  background: #f4f1e8;
+  border-color: var(--green);
+}
+
+.modal-note {
+  margin-top: 1.2rem;
+  font-size: 0.78rem;
+  text-align: center;
+  color: var(--green-soft);
+}
+
+@keyframes modal-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modal-pop {
+  from { transform: scale(0.92) translateY(12px); opacity: 0; }
+  to { transform: scale(1) translateY(0); opacity: 1; }
+}

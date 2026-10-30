@@ -1,0 +1,60 @@
+/* ==================================================================
+   CLOSING (Closing.css)
+   ================================================================== */
+
+.closing {
+  padding-top: 1rem;
+  padding-bottom: clamp(3rem, 10vw, 4.5rem);
+  text-align: center;
+}
+
+.closing__inner {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 1.6rem 1.2rem;
+}
+
+.closing__message {
+  font-size: clamp(2rem, 7vw, 2.7rem);
+  color: var(--green-deep);
+  line-height: 1.25;
+}
+
+.closing__signature {
+  font-size: clamp(1.4rem, 5vw, 1.8rem);
+  color: var(--green);
+  margin-top: 0.8rem;
+}
+
+.closing__footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 1.2rem;
+  color: var(--green-soft);
+}
+
+.closing__footer-names {
+  font-size: 1.2rem;
+}
+
+.closing__to-top {
+  margin-top: 0.8rem;
+  background: none;
+  border: none;
+  color: var(--green-deep);
+  font-family: var(--font-serif);
+  font-size: 0.82rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.closing__to-top:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+}
