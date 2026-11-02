@@ -1,4 +1,3 @@
-
 /**
  * data.ts — Single source of truth for the wedding invitation.
  *
@@ -9,14 +8,6 @@
  * TODO: DUMMY DATA comments identify sample content that must be
  * confirmed or replaced before publishing.
  */
-
-export interface Person {
-  name: string
-  role: string
-  parents: string
-  credentials: string[]
-  title: string
-}
 
 export interface TimelineEvent {
   time: string
@@ -43,31 +34,11 @@ export const invitation = {
   /** Couple presentation shown in the hero */
   brideAndGroom: {
     first: {
-      name: 'Harshith Poojary',
-      person: {
-        name: 'Harshith Poojary',
-        role: 'Son of',
-        // TODO: DUMMY DATA — replace with groom's parents' names.
-        parents: 'Mr. & Mrs. Poojary',
-        // TODO: DUMMY DATA — replace with actual credentials, or [].
-        credentials: [],
-        // TODO: DUMMY DATA — replace with groom's profession, or ''.
-        title: '',
-      } as Person,
+      name: 'Harshith ',
     },
     ampersand: '&',
     second: {
       name: 'Shreya',
-      person: {
-        name: 'Shreya',
-        role: 'Daughter of',
-        // TODO: DUMMY DATA — replace with bride's parents' names.
-        parents: 'Mr. & Mrs. [Family Name]',
-        // TODO: DUMMY DATA — replace with actual credentials, or [].
-        credentials: [],
-        // TODO: DUMMY DATA — replace with bride's profession, or ''.
-        title: '',
-      } as Person,
     },
   },
 
@@ -154,10 +125,12 @@ export const invitation = {
   /** Wedding venue */
   venue: {
     heading: 'Venue',
-    name: 'St. Sebastian Mini Hall',
-    address: 'Mallikatte, Kadri, Mangaluru, Karnataka 575002',
+    name: 'St. Sebastian Centenary Auditorium',
+    address: 'Bendur, Mangaluru, Karnataka 575002',
     mapsQuery:
-      'St. Sebastian Mini Hall, Mallikatte, Kadri, Mangaluru, Karnataka 575002',
+      'St. Sebastian Centenary Auditorium, Bendur, Mangaluru, Karnataka 575002',
+    // Exact Google Maps pin shared by the family
+    mapsLink: 'https://maps.app.goo.gl/z31Ewns9LHKoggKz8',
   },
 
   /** Dress code */
@@ -165,12 +138,12 @@ export const invitation = {
     heading: 'Dress Code',
     groups: [
       {
-        label: 'Women',
-        description: 'Indian traditional attire',
+        label: 'Haldi',
+        description: 'Hues of yellow & green, for both men and women.',
       },
       {
-        label: 'Men',
-        description: 'Indian traditional attire',
+        label: 'Wedding',
+        description: 'Indian traditional attire.',
       },
     ],
   },
@@ -191,20 +164,6 @@ export const invitation = {
         ],
       },
     ] as EventDay[],
-  },
-
-  // TODO: DUMMY DATA — confirm whether shuttle service is available.
-  transportation: {
-    heading: 'Transportation',
-    text:
-      'Please contact the family for transportation details and directions to the wedding venue.',
-  },
-
-  // TODO: DUMMY DATA — replace with confirmed accommodation details if needed.
-  accommodation: {
-    heading: 'Accommodation',
-    text:
-      'For accommodation recommendations, please contact the family.',
   },
 
   gifts: {
@@ -255,169 +214,6 @@ export const invitation = {
     // Example: '/audio/wedding-ambience.mp3'
     src: '',
     title: 'Wedding ambience',
-  },
-} as const
-
-/**
- * Arabic translations.
- *
- * TODO: DUMMY DATA — these are retained sample translations from the
- * original template. Replace them with accurate Arabic translations
- * of the Harshith & Shreya invitation, or remove language switching
- * if Arabic is not required.
- */
-export const arabicInvitation = {
-  gate: {
-    tapToOpen: 'إضغط للفتح',
-  },
-  heroKicker: 'يسرنا دعوتكم لحضور حفل زفاف',
-  brideAndGroom: {
-    first: {
-      name: 'هارشيث بوجاري',
-      person: {
-        name: 'هارشيث بوجاري',
-        role: 'ابن',
-        parents: 'السيد والسيدة بوجاري',
-        credentials: [],
-        title: '',
-      },
-    },
-    ampersand: '&',
-    second: {
-      name: 'شريا',
-      person: {
-        name: 'شريا',
-        role: 'ابنة',
-        // TODO: DUMMY DATA — replace with the bride's parents' names.
-        parents: 'السيد والسيدة [اسم العائلة]',
-        credentials: [],
-        title: '',
-      },
-    },
-  },
-  scroll: 'التمرير للأسفل',
-  message:
-    'بكل محبة وبركة من عائلتينا، يسعدنا دعوتكم للاحتفال بزفاف هارشيث بوجاري وشريا. حضوركم ودعواتكم تجعل هذه المناسبة أكثر سعادة ومعنى.',
-  wedding: {
-    dateTime: '2026-12-14T10:00:00+05:30',
-    dateLabel: '١٤ ديسمبر ٢٠٢٦',
-    dayLabel: 'الاثنين',
-    timeLabel: '١٠:٠٠ صباحاً',
-  },
-  scratch: {
-    heading: 'اكشط لكشف الدعوة',
-    revealedTitle: 'أنتم مدعوون!',
-    revealHint: 'استخدم إصبعك أو الفأرة لكشف القلب',
-    saveTheDate: 'احفظوا التاريخ',
-  },
-  countdownHeading: 'العد التنازلي للأبد',
-  countdownUnits: {
-    days: 'أيام',
-    hours: 'ساعات',
-    minutes: 'دقائق',
-    seconds: 'ثوانٍ',
-  },
-  program: {
-    heading: 'جدول الاحتفالات',
-    days: [
-      {
-        dateLabel: 'الجمعة، ١١ ديسمبر ٢٠٢٦',
-        events: [
-          {
-            time: '١١:٠٠ صباحاً',
-            title: 'حفل الميهندي والهالدي',
-            description: 'احتفال عائلي مليء بالفرح والبركات.',
-          },
-        ],
-      },
-      {
-        dateLabel: 'الاثنين، ١٤ ديسمبر ٢٠٢٦',
-        events: [
-          {
-            time: '١٠:٠٠ صباحاً',
-            title: 'مراسم الزفاف',
-            description: 'نرحب بكم لمشاركة فرحتنا في هذا اليوم المميز.',
-          },
-        ],
-      },
-    ],
-  },
-  venue: {
-    heading: 'مكان الحفل',
-    name: 'قاعة سانت سيباستيان',
-    address: 'ماليكات، كادري، مانغالورو، كارناتاكا 575002',
-    openInMaps: 'فتح في خرائط جوجل',
-  },
-  dressCode: {
-    heading: 'الزي المفضل',
-    groups: [
-      {
-        label: 'السيدات',
-        description: 'الزي الهندي التقليدي',
-      },
-      {
-        label: 'الرجال',
-        description: 'الزي الهندي التقليدي',
-      },
-    ],
-  },
-  preWedding: {
-    heading: 'احتفالات ما قبل الزفاف',
-    days: [
-      {
-        dateLabel: 'الجمعة، ١١ ديسمبر ٢٠٢٦',
-        events: [
-          {
-            time: '١١:٠٠ صباحاً',
-            title: 'حفل الميهندي والهالدي',
-            description: 'في منزل هارشا ديبا، ثومبي، كارناتاكا.',
-          },
-        ],
-      },
-    ],
-  },
-  transportation: {
-    heading: 'المواصلات',
-    text: 'يرجى التواصل مع العائلة لمعرفة تفاصيل المواصلات.',
-  },
-  accommodation: {
-    heading: 'الإقامة',
-    text: 'يرجى التواصل مع العائلة للحصول على معلومات الإقامة.',
-  },
-  gifts: {
-    heading: 'محبتكم وبركاتكم',
-    text: 'حضوركم ومحبتكم ودعواتكم هي أجمل هدية لنا.',
-  },
-  rsvp: {
-    heading: 'تأكيد الحضور',
-    deadlineLabel: '',
-    nameField: {
-      label: 'الاسم الكامل',
-      placeholder: 'اكتب اسمك هنا',
-    },
-    attendanceField: {
-      label: 'هل ستشرفنا بالحضور؟',
-      placeholder: 'اختر...',
-    },
-    options: [
-      { value: 'yes', label: 'نعم، سأحضر!' },
-      { value: 'no', label: 'أعتذر عن الحضور' },
-    ],
-    guestsField: {
-      label: 'عدد الضيوف',
-      placeholder: 'اختر عدد الضيوف',
-    },
-    messageField: {
-      label: 'رسالة للعروسين',
-      placeholder: 'اكتب تهنئتك هنا...',
-    },
-    submitLabel: 'إرسال الرد',
-    successTitle: 'شكراً جزيلاً!',
-    successText: 'شكراً لردكم، نتطلع إلى الاحتفال معكم!',
-  },
-  closing: {
-    message: 'نتطلع إلى الاحتفال معكم!',
-    signature: 'هارشيث & شريا',
   },
 } as const
 

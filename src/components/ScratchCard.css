@@ -110,7 +110,7 @@
 .scratch__day {
   font-family: var(--font-serif);
   font-size: clamp(0.78rem, 3.2vw, 0.9rem);
-  color: var(--green-soft);
+  color: var(--green-deep);
   text-transform: uppercase;
   letter-spacing: 0.16em;
   margin-top: 0.22rem;
@@ -239,7 +239,7 @@
   font-family: var(--font-serif);
   font-size: 0.82rem;
   letter-spacing: 0.05em;
-  color: var(--green-soft);
+  color: var(--green-deep);
   text-align: center;
   transition: opacity 0.25s ease;
 }

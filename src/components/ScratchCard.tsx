@@ -1,14 +1,15 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { CalendarPlus } from 'lucide-react'
-import { invitation, arabicInvitation } from '../data'
+import { invitation } from '../data'
 import { usePrefersReducedMotion, icsDate } from '../utils/helpers'
 import { SectionHeading } from './Dividers'
 import './ScratchCard.css'
 
 export interface ScratchCardProps {
-  scratch: (typeof invitation)['scratch'] | (typeof arabicInvitation)['scratch']
-  wedding: (typeof invitation)['wedding'] | (typeof arabicInvitation)['wedding']
-  isArabic: boolean
+  scratch: (typeof invitation)['scratch']
+  wedding: (typeof invitation)['wedding']
+  /** Kept optional so App.tsx call sites compile either way — unused now that Arabic is removed */
+  isArabic?: boolean
 }
 
 /** Blast when this share of the ORIGINAL heart foil has been scratched away */
@@ -179,7 +180,7 @@ function HeartFrame() {
       <g className="frame-ornament" fill="#D9BC7E">
         <path d="M24 134 l1.7 3.6 3.6 1.7 -3.6 1.7 -1.7 3.6 -1.7 -3.6 -3.6 -1.7 3.6 -1.7 Z" opacity="0.9" />
         <path d="M271 130 l1.5 3.2 3.2 1.5 -3.2 1.5 -1.5 3.2 -1.5 -3.2 -3.2 -1.5 3.2 -1.5 Z" opacity="0.75" />
-        <path d="M150 24 l1.6 3.4 3.4 1.6 -3.4 1.6 -1.6 3.4 -1.6 -3.4 -3.4 -1.6 3.4 -1.6 Z" opacity="0.85" />
+        <path d="M150 24 l1.6 3.4 3.4 1.6 -3.4 1.6 -1.6 3.4 -1.6 3.4 -3.4 -1.6 3.4 -1.6 Z" opacity="0.85" />
         <circle cx="48" cy="50" r="1.7" opacity="0.7" />
         <circle cx="252" cy="50" r="1.7" opacity="0.7" />
         <circle cx="118" cy="284" r="1.5" opacity="0.65" />
@@ -189,7 +190,7 @@ function HeartFrame() {
   )
 }
 
-export function ScratchCard({ scratch, wedding, isArabic }: ScratchCardProps) {
+export function ScratchCard({ scratch, wedding }: ScratchCardProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const stageRef = useRef<HTMLDivElement>(null)
   const [blasting, setBlasting] = useState(false)
@@ -203,7 +204,7 @@ export function ScratchCard({ scratch, wedding, isArabic }: ScratchCardProps) {
   const rafRef = useRef(0)
   const startBlastRef = useRef<() => void>(() => {})
 
-  /** Draws the rich emerald-and-gold scratch foil clipped to a heart */
+  /** Draws the rich ruby-and-gold scratch foil clipped to a heart */
   const paintHeart = useCallback((canvas: HTMLCanvasElement) => {
     const ctx = canvas.getContext('2d')
     if (!ctx) return
@@ -232,15 +233,15 @@ export function ScratchCard({ scratch, wedding, isArabic }: ScratchCardProps) {
     ctx.save()
     ctx.clip()
 
-    // Deep royal-emerald foil gradient
+    // Deep royal-ruby foil gradient
     const grad = ctx.createLinearGradient(0, 0, size, size)
-    grad.addColorStop(0, '#4A6A54')
-    grad.addColorStop(0.45, '#35523F')
-    grad.addColorStop(1, '#22392B')
+    grad.addColorStop(0, '#BE4F55')
+    grad.addColorStop(0.45, '#9C3038')
+    grad.addColorStop(1, '#641B23')
     ctx.fillStyle = grad
     ctx.fillRect(0, 0, size, size)
 
-    // Fine glitter — gold, ivory and forest speckles
+    // Fine glitter — gold, ivory and wine speckles
     for (let i = 0; i < 950; i++) {
       const x = Math.random() * size
       const y = Math.random() * size
@@ -248,7 +249,7 @@ export function ScratchCard({ scratch, wedding, isArabic }: ScratchCardProps) {
       const roll = Math.random()
       ctx.globalAlpha = 0.18 + Math.random() * 0.55
       ctx.fillStyle =
-        roll > 0.72 ? '#E9C46A' : roll > 0.5 ? '#F4E4B8' : roll > 0.22 ? '#FFFDF0' : '#1C3024'
+        roll > 0.72 ? '#E9C46A' : roll > 0.5 ? '#F4E4B8' : roll > 0.22 ? '#FFFDF0' : '#470F14'
       ctx.beginPath()
       ctx.arc(x, y, r, 0, Math.PI * 2)
       ctx.fill()
@@ -290,7 +291,7 @@ export function ScratchCard({ scratch, wedding, isArabic }: ScratchCardProps) {
     const sheen = ctx.createRadialGradient(size * 0.5, size * 0.34, 10, size * 0.5, size * 0.5, size * 0.72)
     sheen.addColorStop(0, 'rgba(255,255,245,0.3)')
     sheen.addColorStop(0.5, 'rgba(255,255,245,0.06)')
-    sheen.addColorStop(1, 'rgba(12,26,16,0.28)')
+    sheen.addColorStop(1, 'rgba(48,8,14,0.28)')
     ctx.fillStyle = sheen
     ctx.fillRect(0, 0, size, size)
 
@@ -334,7 +335,7 @@ export function ScratchCard({ scratch, wedding, isArabic }: ScratchCardProps) {
   }, [])
 
   /**
-   * The garden blast: the remaining foil shatters into emerald shards while
+   * The garden blast: the remaining foil shatters into ruby shards while
    * rose petals, sage leaves, gold flecks and star sparkles burst outward,
    * then flutter down with gravity over the revealed wedding date. Twin
    * shock rings and an ivory-gold flash sell the explosion.
@@ -825,11 +826,7 @@ export function ScratchCard({ scratch, wedding, isArabic }: ScratchCardProps) {
               blasting ? ' scratch__hint--hide' : ''
             }`}
           >
-            {revealed
-              ? isArabic
-                ? 'نتطلع بشوق لرؤيتكم!'
-                : 'See you there! ❤'
-              : scratch.revealHint}
+            {revealed ? 'See you there! ❤' : scratch.revealHint}
           </p>
         )}
       </div>

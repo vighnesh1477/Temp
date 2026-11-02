@@ -1,6 +1,5 @@
-
 import { useEffect, useState } from 'react'
-import { Building2, CarFront, Gift } from 'lucide-react'
+import { Gift } from 'lucide-react'
 import { invitation } from './data'
 import { usePrefersReducedMotion } from './utils/helpers'
 import { WavyDivider } from './components/Dividers'
@@ -122,24 +121,6 @@ export default function App() {
           <WavyDivider />
 
           <PreWeddingEvents preWedding={activeData.preWedding} />
-
-          <WavyDivider />
-
-          <InfoSection
-            icon={<CarFront size={24} strokeWidth={1.7} />}
-            heading={activeData.transportation.heading}
-            text={activeData.transportation.text}
-            headingId="transport-heading"
-          />
-
-          <WavyDivider />
-
-          <InfoSection
-            icon={<Building2 size={24} strokeWidth={1.7} />}
-            heading={activeData.accommodation.heading}
-            text={activeData.accommodation.text}
-            headingId="accommodation-heading"
-          />
 
           <WavyDivider />
 

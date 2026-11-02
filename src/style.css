@@ -3,18 +3,21 @@
    Royal Grace — Global Wedding Invitation Styles
    ================================================================== */
 
+
 :root {
-  /* Palette */
-  --ink: #27331f;
-  --green-deep: #3e5634;
-  --green: #4a5c3d;
-  --green-soft: #5f6d55;
-  --cream: #f9f7f1;
-  --cream-warm: #f6f3e9;
-  --linen: #eae3d2;
-  --gold: #c2a15b;
-  --gold-soft: #d9bc7e;
-  --danger: #9c4a3c;
+  /* Royal South Indian Wedding Palette */
+  --ink: #43251F;
+  --green-deep: #542923;
+  --green: #702F2B;
+  --green-soft: #994D3E;
+
+  --cream: #FBF6ED;
+  --cream-warm: #F5EBDD;
+  --linen: #E8D7B9;
+
+  --gold: #BD9857;
+  --gold-soft: #D9BC83;
+  --danger: #9C4037;
 
   /* Layout */
   --frame-max: 680px;
@@ -28,8 +31,9 @@
   --font-serif: 'Lora', Georgia, serif;
   --font-italic: 'Cormorant Garamond', 'Lora', serif;
 
-  --shadow-card: 0 10px 30px rgba(39, 51, 31, 0.12);
+  --shadow-card: 0 10px 30px rgba(67, 37, 31, 0.12);
 }
+
 
 /* ------------------------------------------------------------------
    Reset
@@ -89,7 +93,8 @@ p {
 }
 
 ::selection {
-  background: rgba(74, 92, 61, 0.25);
+  background: rgba(189, 152, 87, 0.3);
+  color: #43251F;
 }
 
 /* ------------------------------------------------------------------
@@ -132,7 +137,7 @@ p {
   z-index: -1;
   pointer-events: none;
 
-  background-color: #f0ebdd;
+  background-color: #F5EBDD;
   background-image: url('/images/linen-texture.webp');
   background-repeat: no-repeat;
   background-position: center center;

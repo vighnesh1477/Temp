@@ -1,9 +1,9 @@
 import { ChevronDown, Heart } from 'lucide-react'
-import { invitation, arabicInvitation } from '../data'
+import { invitation } from '../data'
 import './Hero.css'
 
 export interface HeroProps {
-  activeData: typeof invitation | typeof arabicInvitation
+  activeData: typeof invitation
 }
 
 export function Hero({ activeData }: HeroProps) {
@@ -31,38 +31,16 @@ export function Hero({ activeData }: HeroProps) {
           <span className="hero__name script-lg" data-hero>
             {brideAndGroom.first.name}
           </span>
-          <span className="hero__person" data-hero>
-            <span className="hero__person-line">
-              {brideAndGroom.first.person.role} {brideAndGroom.first.person.parents}
-            </span>
-            {brideAndGroom.first.person.credentials.map((c) => (
-              <span className="hero__person-line" key={c}>
-                {c}
-              </span>
-            ))}
-            <span className="hero__person-line">{brideAndGroom.first.person.title}</span>
-          </span>
           <span className="hero__amp script-sm" data-hero aria-hidden="true">
             {brideAndGroom.ampersand}
           </span>
           <span className="hero__name script-lg" data-hero>
             {brideAndGroom.second.name}
           </span>
-          <span className="hero__person" data-hero>
-            <span className="hero__person-line">
-              {brideAndGroom.second.person.role} {brideAndGroom.second.person.parents}
-            </span>
-            {brideAndGroom.second.person.credentials.map((c) => (
-              <span className="hero__person-line" key={c}>
-                {c}
-              </span>
-            ))}
-            <span className="hero__person-line">{brideAndGroom.second.person.title}</span>
-          </span>
         </h1>
       </div>
       <button type="button" className="hero__scroll" onClick={scrollToContent} data-hero aria-label="Scroll down">
-        <span className="hero__scroll-label">{'scroll' in activeData ? activeData.scroll : 'Scroll'}</span>
+        <span className="hero__scroll-label">Scroll</span>
         <ChevronDown size={18} strokeWidth={2.4} aria-hidden="true" />
       </button>
     </section>

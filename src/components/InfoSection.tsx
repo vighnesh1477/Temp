@@ -1,20 +1,24 @@
 import React from 'react'
 import { Shirt } from 'lucide-react'
-import { invitation, arabicInvitation } from '../data'
+import { invitation } from '../data'
 import { SectionHeading } from './Dividers'
 import './InfoSection.css'
 
 export interface DressCodeProps {
-  dressCode: typeof invitation.dressCode | typeof arabicInvitation.dressCode
+  dressCode: typeof invitation.dressCode
 }
 
 export function DressCode({ dressCode }: DressCodeProps) {
   return (
     <section className="section" aria-labelledby="dresscode-heading">
-      <SectionHeading icon={<Shirt size={24} strokeWidth={1.7} />} title={dressCode.heading} id="dresscode-heading" />
+      <SectionHeading
+        icon={<Shirt size={24} strokeWidth={1.7} />}
+        title={dressCode.heading}
+        id="dresscode-heading"
+      />
       <div className="dress-code" data-reveal>
         {dressCode.groups.map((g) => (
-          <div className="dress-code__group" key={g.label}>
+          <div className="dress-code__item" key={g.label}>
             <h3 className="dress-code__label">{g.label}</h3>
             <span className="dress-code__rule" aria-hidden="true" />
             <p className="dress-code__desc">{g.description}</p>
