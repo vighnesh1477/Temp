@@ -112,7 +112,7 @@ export default function App() {
 
           <WavyDivider />
 
-          <Venue venue={activeData.venue} isArabic={false} />
+          <Venue venue={activeData.venue} />
 
           <WavyDivider />
 
