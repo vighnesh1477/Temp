@@ -4,8 +4,6 @@
  * Real couple: Harshith Poojary & Shreya
  * Wedding: December 14, 2026, at 10:21 AM IST (Muhurtam)
  * Sangeet Night: December 12, 2026, from 6:00 PM onwards
- * Haldi & Mehendi: December 11, 2026, at 11:00 AM — both at Harsha
- * Deepa House, Thumbe (same venue for the two ceremonies)
  *
  * TODO: DUMMY DATA comments identify sample content that must be
  * confirmed or replaced before publishing.
@@ -59,7 +57,7 @@ export const invitation = {
 
   /** Formal invitation wording */
   message:
-    'With the blessings of our families, we joyfully invite you to celebrate the wedding of Harshith Poojary & Shreya. Your presence and blessings will make our special day even more meaningful.',
+    'With the blessings of our families, we joyfully invite you to celebrate the wedding of Harshith & Shreya. Your presence and blessings will make our special day even more meaningful.',
 
   /** Main wedding day — used by countdown and calendar */
   wedding: {
@@ -106,40 +104,10 @@ export const invitation = {
 
   countdownHeading: 'Counting Down to Forever',
 
-  /** All celebrations — Haldi, Mehendi, Sangeet Night and the wedding day (each event carries its venue) */
+  /** All celebrations — Sangeet Night and the wedding day (each event carries its venue) */
   program: {
     heading: 'Wedding Celebrations',
     days: [
-      {
-        dateLabel: 'Friday, December 11, 2026',
-        events: [
-          {
-            time: '11:00 AM',
-            title: 'Haldi',
-            description:
-              'A joyful celebration of turmeric, family and blessings.',
-            venue: {
-              name: 'Harsha Deepa House',
-              address: 'Thumbe, Karnataka 574143',
-              mapsQuery: 'Harsha Deepa House, Thumbe, Karnataka 574143',
-              // TODO: exact pin not shared yet — falls back to a Google Maps search link
-              mapsLink: '',
-            },
-          },
-          {
-            time: '11:00 AM',
-            title: 'Mehendi',
-            description: 'A joyful celebration of henna, music and laughter.',
-            venue: {
-              name: 'Harsha Deepa House',
-              address: 'Thumbe, Karnataka 574143',
-              mapsQuery: 'Harsha Deepa House, Thumbe, Karnataka 574143',
-              // TODO: exact pin not shared yet — falls back to a Google Maps search link
-              mapsLink: '',
-            },
-          },
-        ],
-      },
       {
         dateLabel: 'Saturday, December 12, 2026',
         events: [
@@ -201,13 +169,14 @@ export const invitation = {
     mapsLink: 'https://maps.app.goo.gl/nMd8TjvHkbt4EbiW6',
   },
 
-  /** Dress code */
+  /** Dress code — Sangeet Night & wedding day */
   dressCode: {
     heading: 'Dress Code',
     groups: [
       {
-        label: 'Haldi',
-        description: 'Hues of yellow & green, for both men and women.',
+        label: 'Sangeet Night',
+        description:
+          'Bright, colorful festive attire — vibrant colors for both men and women.',
       },
       {
         label: 'Wedding',
