@@ -12,11 +12,15 @@
 .carousel {
   position: relative;
   width: min(88vw, 520px);
-  aspect-ratio: 16 / 10;
+  /* portrait frame — matches phone/couple photos so almost the whole
+     picture fits instead of only the middle strip */
+  aspect-ratio: 4 / 5;
   border-radius: 18px;
   overflow: hidden;
   box-shadow: 0 8px 24px rgba(39, 51, 31, 0.14);
   touch-action: pan-y;
+  /* soft linen tone so the card never flashes white while photos fade */
+  background: #f1efe4;
 }
 
 .carousel__img {
@@ -25,12 +29,29 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  /* THE CROP FIX: anchor the photo to the top so faces/arches are
+     always visible instead of the middle slice */
+  object-position: 50% 10%;
   opacity: 0;
-  transition: opacity 0.9s ease;
+  transform: scale(1.08);
+  /* long cinematic crossfade between photos */
+  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity, transform;
 }
 
 .carousel__img--active {
   opacity: 1;
+  /* slow Ken Burns zoom while the photo is on screen */
+  animation: carousel-kenburns 6s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
+
+@keyframes carousel-kenburns {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
+  }
 }
 
 .carousel__dots-external {
@@ -55,4 +76,16 @@
 .carousel__dot--active {
   width: 22px;
   background: #3d522f;
+}
+
+/* guests who prefer reduced motion get a plain, quick fade */
+@media (prefers-reduced-motion: reduce) {
+  .carousel__img {
+    transition-duration: 0.4s;
+    transform: none;
+  }
+
+  .carousel__img--active {
+    animation: none;
+  }
 }

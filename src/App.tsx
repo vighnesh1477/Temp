@@ -9,7 +9,7 @@ import { InvitationMessage } from './components/InvitationMessage'
 import { ScratchCard } from './components/ScratchCard'
 import { Carousel } from './components/Carousel'
 import { Countdown } from './components/Countdown'
-import { ProgramTimeline, PreWeddingEvents } from './components/Timeline'
+import { ProgramTimeline } from './components/Timeline'
 import { Venue } from './components/Venue'
 import { DressCode, InfoSection } from './components/InfoSection'
 import { Contact } from './components/Contact'
@@ -117,10 +117,6 @@ export default function App() {
           <WavyDivider />
 
           <DressCode dressCode={activeData.dressCode} />
-
-          <WavyDivider />
-
-          <PreWeddingEvents preWedding={activeData.preWedding} />
 
           <WavyDivider />
 

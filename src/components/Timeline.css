@@ -87,3 +87,57 @@
   font-style: italic;
   margin-top: 0.1rem;
 }
+
+/* ------------------------------------------------------------------
+   Venue chip — tappable Google Maps link under each event.
+   Matches the date-pill look (pill shape, green tones, same fonts).
+   ------------------------------------------------------------------ */
+
+.timeline__venue {
+  margin-top: 0.6rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  width: fit-content;
+  max-width: 100%;
+  padding: 6px 13px;
+  border-radius: 999px;
+  background: rgba(74, 92, 61, 0.08);
+  border: 1px solid rgba(74, 92, 61, 0.22);
+  text-decoration: none;
+  transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.timeline__venue:hover,
+.timeline__venue:focus-visible {
+  background: rgba(74, 92, 61, 0.16);
+  border-color: rgba(74, 92, 61, 0.45);
+  outline: none;
+}
+
+.timeline__venue svg {
+  flex-shrink: 0;
+  color: var(--green);
+}
+
+.timeline__venue-text {
+  display: grid;
+  gap: 1px;
+  line-height: 1.3;
+  text-align: left;
+}
+
+.timeline__venue-name {
+  font-family: var(--font-display);
+  font-size: 0.76rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+}
+
+.timeline__venue-address {
+  font-family: var(--font-serif);
+  font-size: 0.75rem;
+  color: var(--green-deep);
+}

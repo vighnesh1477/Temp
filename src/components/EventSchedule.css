@@ -1,0 +1,151 @@
+/* ==================================================================
+   EVENT SCHEDULE (EventSchedule.css)
+   Program / Pre-Wedding days with per-event venue links.
+   Matches the editorial style of InfoSection.css.
+   ================================================================== */
+
+.event-schedule {
+  max-width: 680px;
+  margin: 0 auto;
+  display: grid;
+  gap: 2.4rem;
+}
+
+.event-day__date {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  color: var(--gold);
+  text-align: center;
+  margin-bottom: 1.4rem;
+}
+
+.event-day__events {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.event-card {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 0.4rem 1rem 0.6rem;
+  text-align: center;
+}
+
+.event-card__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.35rem 0.9rem;
+}
+
+.event-card__title {
+  font-family: var(--font-display);
+  font-size: 1.02rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--ink);
+}
+
+.event-card__time {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-display);
+  font-size: 0.76rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* thin gold hairline under the title/time row */
+.event-card__head::after {
+  content: '';
+  display: block;
+  width: 30px;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.8;
+  margin: 0.85rem auto 0;
+  flex-basis: 100%;
+}
+
+.event-card__desc {
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--green-deep);
+  margin-top: 0.6rem;
+}
+
+/* --- Venue chip: tappable Google Maps row ------------------------- */
+
+.event-venue {
+  margin-top: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.55rem 1rem;
+  text-align: left;
+  text-decoration: none;
+  border: 1px solid rgba(194, 161, 91, 0.4);
+  border-radius: 999px;
+  color: var(--ink);
+  transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.event-venue:hover,
+.event-venue:focus-visible {
+  background: rgba(194, 161, 91, 0.12);
+  border-color: var(--gold);
+  outline: none;
+}
+
+.event-venue svg {
+  flex-shrink: 0;
+  color: var(--gold);
+}
+
+.event-venue__text {
+  display: grid;
+  gap: 0.1rem;
+  line-height: 1.35;
+}
+
+.event-venue__name {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink);
+}
+
+.event-venue__address {
+  font-family: var(--font-serif);
+  font-size: 0.82rem;
+  color: var(--green-deep);
+}
+
+@media (max-width: 560px) {
+  .event-schedule {
+    gap: 2rem;
+  }
+
+  .event-card {
+    padding: 0.3rem 0.5rem 0.5rem;
+  }
+
+  .event-venue {
+    max-width: 100%;
+  }
+
+  .event-venue__address {
+    /* long addresses wrap gracefully inside the chip */
+    white-space: normal;
+  }
+}

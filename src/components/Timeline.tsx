@@ -1,5 +1,4 @@
-
-import { Clock, PartyPopper } from 'lucide-react'
+import { Clock, MapPin } from 'lucide-react'
 import { invitation } from '../data'
 import { SectionHeading } from './Dividers'
 import './Timeline.css'
@@ -10,6 +9,13 @@ export interface TimelineDay {
     time: string
     title: string
     description: string
+    /** Optional venue — renders a tappable Google Maps row under the event */
+    venue?: {
+      name: string
+      address: string
+      mapsQuery: string
+      mapsLink: string
+    }
   }[]
 }
 
@@ -38,6 +44,8 @@ export function Timeline({ days }: { days: readonly TimelineDay[] }) {
                   {evt.description && (
                     <p className="timeline__desc">{evt.description}</p>
                   )}
+
+                  {evt.venue && <TimelineVenue venue={evt.venue} />}
                 </div>
               </div>
             ))}
@@ -45,6 +53,35 @@ export function Timeline({ days }: { days: readonly TimelineDay[] }) {
         </div>
       ))}
     </div>
+  )
+}
+
+/**
+ * Venue row for a single event. Opens the exact Google Maps pin when
+ * the family shared one (wedding & sangeet cards), otherwise falls
+ * back to a Maps search built from the address (haldi & mehendi).
+ */
+function TimelineVenue({ venue }: { venue: NonNullable<TimelineDay['events'][number]['venue']> }) {
+  const href =
+    venue.mapsLink ||
+    `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+      venue.mapsQuery,
+    )}`
+
+  return (
+    <a
+      className="timeline__venue"
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`Open in Google Maps: ${venue.name}, ${venue.address}`}
+    >
+      <MapPin size={13} strokeWidth={1.7} aria-hidden="true" />
+      <span className="timeline__venue-text">
+        <span className="timeline__venue-name">{venue.name}</span>
+        <span className="timeline__venue-address">{venue.address}</span>
+      </span>
+    </a>
   )
 }
 
@@ -62,24 +99,6 @@ export function ProgramTimeline({
       />
 
       <Timeline days={program.days} />
-    </section>
-  )
-}
-
-export function PreWeddingEvents({
-  preWedding,
-}: {
-  preWedding: typeof invitation.preWedding
-}) {
-  return (
-    <section className="section" aria-labelledby="prewedding-heading">
-      <SectionHeading
-        icon={<PartyPopper size={24} strokeWidth={1.7} />}
-        title={preWedding.heading}
-        id="prewedding-heading"
-      />
-
-      <Timeline days={preWedding.days} />
     </section>
   )
 }

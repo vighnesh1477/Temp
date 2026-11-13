@@ -4,7 +4,7 @@
 
 .music-toggle {
   position: fixed;
-  top: calc(14px + env(safe-area-inset-top));
+  bottom: calc(14px + env(safe-area-inset-bottom));
   right: calc(14px + env(safe-area-inset-right));
   z-index: 130;
   width: 44px;

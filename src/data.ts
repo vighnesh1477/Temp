@@ -2,17 +2,30 @@
  * data.ts — Single source of truth for the wedding invitation.
  *
  * Real couple: Harshith Poojary & Shreya
- * Wedding: December 14, 2026, at 10:00 AM IST
- * Mehandi & Haldi: December 11, 2026, at 11:00 AM
+ * Wedding: December 14, 2026, at 10:21 AM IST (Muhurtam)
+ * Sangeet Night: December 12, 2026, from 6:00 PM onwards
+ * Haldi & Mehendi: December 11, 2026, at 11:00 AM — both at Harsha
+ * Deepa House, Thumbe (same venue for the two ceremonies)
  *
  * TODO: DUMMY DATA comments identify sample content that must be
  * confirmed or replaced before publishing.
  */
 
+export interface EventVenue {
+  name: string
+  address: string
+  /** Used to build a Google Maps search link when mapsLink is empty */
+  mapsQuery: string
+  /** Exact Google Maps pin from the invitation card ('' if not shared yet) */
+  mapsLink: string
+}
+
 export interface TimelineEvent {
   time: string
   title: string
   description: string
+  /** Location shown as a tappable "Open in Google Maps" row for each event */
+  venue?: EventVenue
 }
 
 export interface EventDay {
@@ -50,10 +63,10 @@ export const invitation = {
 
   /** Main wedding day — used by countdown and calendar */
   wedding: {
-    dateTime: '2026-12-14T10:00:00+05:30',
+    dateTime: '2026-12-14T10:21:00+05:30',
     dateLabel: 'December 14, 2026',
     dayLabel: 'Monday',
-    timeLabel: '10:00 AM',
+    timeLabel: '10:21 AM',
   },
 
   /** Opening screen */
@@ -93,7 +106,7 @@ export const invitation = {
 
   countdownHeading: 'Counting Down to Forever',
 
-  /** Wedding and pre-wedding event schedule */
+  /** All celebrations — Haldi, Mehendi, Sangeet Night and the wedding day (each event carries its venue) */
   program: {
     heading: 'Wedding Celebrations',
     days: [
@@ -102,9 +115,46 @@ export const invitation = {
         events: [
           {
             time: '11:00 AM',
-            title: 'Mehandi & Haldi',
+            title: 'Haldi',
             description:
-              'A joyful celebration of henna, turmeric, family and blessings at Harsha Deepa House.',
+              'A joyful celebration of turmeric, family and blessings.',
+            venue: {
+              name: 'Harsha Deepa House',
+              address: 'Thumbe, Karnataka 574143',
+              mapsQuery: 'Harsha Deepa House, Thumbe, Karnataka 574143',
+              // TODO: exact pin not shared yet — falls back to a Google Maps search link
+              mapsLink: '',
+            },
+          },
+          {
+            time: '11:00 AM',
+            title: 'Mehendi',
+            description: 'A joyful celebration of henna, music and laughter.',
+            venue: {
+              name: 'Harsha Deepa House',
+              address: 'Thumbe, Karnataka 574143',
+              mapsQuery: 'Harsha Deepa House, Thumbe, Karnataka 574143',
+              // TODO: exact pin not shared yet — falls back to a Google Maps search link
+              mapsLink: '',
+            },
+          },
+        ],
+      },
+      {
+        dateLabel: 'Saturday, December 12, 2026',
+        events: [
+          {
+            time: '6:00 PM onwards',
+            title: 'Sangeet Night',
+            description:
+              'With love, laughter and music, an evening of dance, joy and togetherness.',
+            venue: {
+              name: 'Urwa Church Mini Hall',
+              address: 'Urwa, Mangaluru, Karnataka',
+              mapsQuery: 'Urwa Church Mini Hall, Mangaluru, Karnataka',
+              // Google Maps pin printed on the Sangeet Night invitation card
+              mapsLink: 'https://maps.app.goo.gl/nMd8TjvHkbt4EbiW6',
+            },
           },
         ],
       },
@@ -112,25 +162,43 @@ export const invitation = {
         dateLabel: 'Monday, December 14, 2026',
         events: [
           {
-            time: '10:00 AM',
+            time: '10:21 AM',
             title: 'Wedding Ceremony',
             description:
               'Join us as Harshith and Shreya begin their journey together, surrounded by family and friends.',
+            venue: {
+              name: 'St. Sebastian Centenary Hall',
+              address: 'Bendur, Mangaluru, Karnataka 575002',
+              mapsQuery:
+                'St. Sebastian Centenary Hall, Bendur, Mangaluru, Karnataka 575002',
+              // Google Maps pin printed on the wedding invitation card
+              mapsLink: 'https://maps.app.goo.gl/C74fe2BGk19P57XR9',
+            },
           },
         ],
       },
     ] as EventDay[],
   },
 
-  /** Wedding venue */
+  /** Wedding venue — details as printed on the wedding invitation card */
   venue: {
     heading: 'Venue',
-    name: 'St. Sebastian Centenary Auditorium',
+    name: 'St. Sebastian Centenary Hall',
     address: 'Bendur, Mangaluru, Karnataka 575002',
     mapsQuery:
-      'St. Sebastian Centenary Auditorium, Bendur, Mangaluru, Karnataka 575002',
-    // Exact Google Maps pin shared by the family
-    mapsLink: 'https://maps.app.goo.gl/z31Ewns9LHKoggKz8',
+      'St. Sebastian Centenary Hall, Bendur, Mangaluru, Karnataka 575002',
+    // Google Maps pin printed on the wedding invitation card
+    mapsLink: 'https://maps.app.goo.gl/C74fe2BGk19P57XR9',
+  },
+
+  /** Sangeet Night venue — December 12, 2026 (wire into the UI when needed) */
+  sangeetVenue: {
+    heading: 'Sangeet Venue',
+    name: 'Urwa Church Mini Hall',
+    address: 'Urwa, Mangaluru, Karnataka',
+    mapsQuery: 'Urwa Church Mini Hall, Mangaluru, Karnataka',
+    // Google Maps pin printed on the Sangeet Night invitation card
+    mapsLink: 'https://maps.app.goo.gl/nMd8TjvHkbt4EbiW6',
   },
 
   /** Dress code */
@@ -148,28 +216,10 @@ export const invitation = {
     ],
   },
 
-  /** Pre-wedding events */
-  preWedding: {
-    heading: 'Pre-Wedding Celebrations',
-    days: [
-      {
-        dateLabel: 'Friday, December 11, 2026',
-        events: [
-          {
-            time: '11:00 AM',
-            title: 'Mehandi & Haldi',
-            description:
-              'At Harsha Deepa House, Thumbe, Karnataka 574143.',
-          },
-        ],
-      },
-    ] as EventDay[],
-  },
-
   gifts: {
     heading: 'Your Blessings',
     text:
-      'Your presence, love and blessings are the greatest gifts we could ask for.',
+      'No presents, only blessings — your presence and blessings are the greatest gift to us.',
   },
 
   /** RSVP form */
@@ -208,12 +258,10 @@ export const invitation = {
     signature: 'Harshith & Shreya',
   },
 
-  /** Background music */
+  /** Background music — Butta Bomma instrumental, file in public/audio/ */
   music: {
-    // TODO: DUMMY DATA — replace with a licensed track in public/audio/.
-    // Example: '/audio/wedding-ambience.mp3'
-    src: '',
-    title: 'Wedding ambience',
+    src: '/audio/butta-bomma.mp3',
+    title: 'Butta Bomma (Instrumental)',
   },
 } as const
 
