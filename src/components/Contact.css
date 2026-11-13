@@ -1,5 +1,7 @@
 /* ==================================================================
    CONTACT ("Please Contact" card — Contact.css)
+   Two family groups — groom's side and bride's side — each with its
+   own labelled card and tap-to-call rows for every member.
    ================================================================== */
 
 .contactus__kicker {
@@ -14,7 +16,25 @@
 
 .contactus {
   max-width: 430px;
-  margin: 1.5rem auto 0;
+  margin: 1.6rem auto 0;
+  display: grid;
+  gap: 1.7rem;
+}
+
+/* --- Group label: small gold uppercase heading above each card ---- */
+
+.contactus__group-title {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  color: var(--gold);
+  text-align: center;
+  margin-bottom: 0.8rem;
+}
+
+.contactus__group-card {
   padding: 0.35rem 1.3rem;
   background: #fdfbf3;
   border: 1px solid rgba(194, 161, 91, 0.38);
@@ -49,6 +69,15 @@
   line-height: 1;
   color: var(--green-deep);
   padding-bottom: 3px; /* optical centring for the script face */
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s ease;
+}
+
+/* Gentle lift on hover/focus — smooth, subtle, professional */
+.contactus__row:hover .contactus__avatar,
+.contactus__row:focus-within .contactus__avatar {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(146, 110, 52, 0.25);
 }
 
 .contactus__who {
@@ -88,7 +117,8 @@
   white-space: nowrap;
   padding-bottom: 2px;
   border-bottom: 1px solid rgba(74, 92, 61, 0.28);
-  transition: color 0.2s ease, border-color 0.2s ease;
+  transition: color 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.25s ease;
 }
 
 .contactus__phone:hover,
@@ -98,7 +128,26 @@
 }
 
 /* Arabic mode — relax latin letter-spacing on RTL text */
+.arabic-mode .contactus__group-title,
 .arabic-mode .contactus__name,
 .arabic-mode .contactus__phone {
   letter-spacing: 0;
+}
+
+@media (max-width: 560px) {
+  .contactus {
+    gap: 1.4rem;
+  }
+
+  .contactus__group-card {
+    padding: 0.25rem 1rem;
+  }
+
+  .contactus__row {
+    gap: 0.8rem;
+  }
+
+  .contactus__phone {
+    font-size: 0.82rem;
+  }
 }
