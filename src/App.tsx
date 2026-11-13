@@ -10,12 +10,12 @@ import { ScratchCard } from './components/ScratchCard'
 import { Carousel } from './components/Carousel'
 import { Countdown } from './components/Countdown'
 import { ProgramTimeline } from './components/Timeline'
-import { Venue } from './components/Venue'
 import { DressCode, InfoSection } from './components/InfoSection'
 import { Contact } from './components/Contact'
 import { Closing } from './components/Closing'
 import { MusicToggle } from './components/MusicToggle'
 import { GlobalFloralEffects } from './components/GlobalFloralEffects'
+import { BottomBar } from './components/BottomBar'
 import './style.css'
 
 export default function App() {
@@ -112,10 +112,6 @@ export default function App() {
 
           <WavyDivider />
 
-          <Venue venue={activeData.venue} />
-
-          <WavyDivider />
-
           <DressCode dressCode={activeData.dressCode} />
 
           <WavyDivider />
@@ -132,6 +128,8 @@ export default function App() {
           <Contact isArabic={false} />
 
           <Closing closing={activeData.closing} />
+
+          <BottomBar />
         </main>
       </div>
 

@@ -1,58 +1,49 @@
+/* ==================================================================
+   BOTTOM BAR (BottomBar.css)
+   Slim credit strip at the very end of the invitation.
+   Tapping it opens the creator's site in a new tab.
+   Plain text style — no pill, no border, small subtle type.
+   ================================================================== */
 
-/* =========================================
-   FLOATING BOTTOM BAR
-   ========================================= */
-
-.floating-bottom-bar {
-  position: fixed;
-  bottom: calc(16px + env(safe-area-inset-bottom));
-  left: 0;
-  right: 0;
-  z-index: 130;
-
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-
-  max-width: 480px;
-  margin: 0 auto;
-  padding: 0 16px;
-
-  pointer-events: none;
+.bottom-bar {
+  padding: 2rem 1rem calc(1.2rem + env(safe-area-inset-bottom));
+  text-align: center;
 }
 
-.btn-pill-lang {
-  pointer-events: auto;
-
-  background: #f4f1e8;
-  border: 1px solid rgba(74, 92, 61, 0.24);
-  color: #3e4b37;
-
-  padding: 9px 18px;
-  border-radius: 9999px;
-
-  font-family: var(--font-serif);
-  font-size: 0.88rem;
-  font-weight: 600;
-
+.bottom-bar__link {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
-
-  cursor: pointer;
-
-  transition:
-    transform 0.2s ease,
-    background 0.2s ease;
+  gap: 5px;
+  text-decoration: none;
+  transition: opacity 0.25s ease;
 }
 
-.btn-pill-lang:hover {
-  background: #ffffff;
-  transform: translateY(-2px);
+.bottom-bar__link:hover,
+.bottom-bar__link:focus-visible {
+  opacity: 0.7;
+  outline: none;
 }
 
-.btn-pill-lang:active {
-  transform: scale(0.96);
+.bottom-bar__made,
+.bottom-bar__name {
+  font-family: var(--font-serif);
+  font-size: 0.44rem;
+  letter-spacing: 0.1em;
+  color: var(--green-deep);
+}
+
+.bottom-bar__name {
+  font-weight: 600;
+}
+
+.bottom-bar__heart {
+  flex-shrink: 0;
+  color: #c4695a; /* soft terracotta rose */
+  fill: currentColor;
+}
+
+@media (max-width: 560px) {
+  .bottom-bar {
+    padding-bottom: calc(1rem + env(safe-area-inset-bottom));
+  }
 }

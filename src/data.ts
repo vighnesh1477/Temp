@@ -57,7 +57,7 @@ export const invitation = {
 
   /** Formal invitation wording */
   message:
-    'With the blessings of our families, we joyfully invite you to celebrate the wedding of Harshith & Shreya. Your presence and blessings will make our special day even more meaningful.',
+    'With the blessings of our families, we joyfully invite you to celebrate the wedding of Harshith Poojary & Shreya. Your presence and blessings will make our special day even more meaningful.',
 
   /** Main wedding day — used by countdown and calendar */
   wedding: {
